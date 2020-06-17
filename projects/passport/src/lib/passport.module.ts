@@ -1,12 +1,9 @@
-import { NgModule } from '@angular/core';
-import { PassportComponent } from './passport.component';
-
-
+import { NgModule } from '@angular/core'
 
 @NgModule({
-  declarations: [PassportComponent],
-  imports: [
-  ],
-  exports: [PassportComponent]
+    declarations: [],
+    imports: [],
+    exports: []
 })
-export class PassportModule { }
+
+export class PassportModule {}
