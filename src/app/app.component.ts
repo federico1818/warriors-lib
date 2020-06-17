@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { OauthService } from 'passport'
+import { OauthService, Credentials } from 'passport'
 
 @Component({
     selector: 'app-root',
@@ -14,6 +14,9 @@ export class AppComponent {
     ){}
 
     public login(): void {
-        this.authService.login()
+        this.authService.login(new Credentials(
+            'yamcha@dbz.com',
+            '1234'
+        ))
     }
 }

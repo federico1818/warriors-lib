@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core'
+import { Injectable, Inject } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
+
+import { Credentials } from './credentials'
+import { Client } from './client'
 
 @Injectable({
     providedIn: 'root'
@@ -8,21 +11,17 @@ import { Observable } from 'rxjs'
 
 export class LoginService {
 
-    protected data = {
-        client_id: 2,
-        client_secret: 'cu6dRACLHNkut3X0fSvjHoj4vjM3mtUGofz1XVFO',
-        grant_type: 'password',
-        username: 'yamcha@dbz.com',
-        password: '1234'
-    }
-
     constructor(
-        protected http: HttpClient
+        protected http: HttpClient,
+        @Inject('Client') protected client: Client
     ) {}
     
-    public invoke(): Observable<any> {
-        return this.http
-            .post('http://localhost:8000/oauth/token', this.data)
+    public invoke(credentials: Credentials): Observable<any> {
+        return this.http.post('http://localhost:8000/oauth/token', {
+                ...this.client,
+                ...credentials,
+                grant_type: 'password'
+            })
     }
 
 }

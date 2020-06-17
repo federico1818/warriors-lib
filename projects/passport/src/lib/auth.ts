@@ -1,3 +1,5 @@
+import { Credentials } from './credentials'
+
 export interface Auth {
-    login(): void
+    login(credentials: Credentials): void
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 
 import { Auth } from './auth'
 import { LoginService } from './login.service'
+import { Credentials } from './credentials'
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +14,8 @@ export class OauthService implements Auth {
         protected loginService: LoginService
     ) {}
 
-    public login(): void {
-        this.loginService.invoke().subscribe(res => {
+    public login(credentials: Credentials): void {
+        this.loginService.invoke(credentials).subscribe(res => {
             console.log(res)
         })
     }
